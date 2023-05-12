@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'calendar-nicpad'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CEAB546DEEB04DE597C3690B58208433 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7205FCDB5FD34D3DB83D04A73159698B }}
           package: .
