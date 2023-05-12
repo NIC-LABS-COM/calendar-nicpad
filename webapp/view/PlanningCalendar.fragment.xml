@@ -1,0 +1,68 @@
+<!-- controllerName="teamCalendar.controller.Main" -->
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:unified="sap.ui.unified"
+    xmlns:core="sap.ui.core">
+    <VBox>
+        <PlanningCalendar
+            singleSelection="true"
+            id="PlanningCalendar"
+            startDate=""
+            viewKey="Day"
+            rows="{ path: 'funcionariosModel>/Funcionarios' }"
+            rowSelectionChange=".rowSelectionHandler"
+            startDateChange=".startDateChangeHandler"
+            viewChange=".viewChangeHandler"
+            appointmentsVisualization="Filled"
+            appointmentSelect="handleAppointmentSelect"
+            showEmptyIntervalHeaders="false"
+            intervalSelect="handleAppointmentAddWithContext"
+            showDayNamesLine="true"
+        >
+            <toolbarContent>
+                <!-- <Switch type="AcceptReject" state="true" /> -->
+                <Select id="PlanningCalendarTeamSelector" change=".selectChangeHandler">
+                    <core:Item key="Funcionarios" text="Funcionários" />
+                </Select>
+                <Button id="Funcionario" icon="sap-icon://add-employee"
+                    press="employeeCreate" tooltip="Novo funcionário" type="Emphasized"
+                />
+                <Button id="PlanningCalendarCreateAppointmentButton" icon="sap-icon://add-activity"
+                    press="taskCreate" tooltip="Nova tarefa" type="Emphasized"
+                />
+                <Button id="PlanningCalendarLegendButton" icon="sap-icon://legend"
+                    press="openLegend" tooltip="Abrir legenda do calendário de planejamento"
+                    type="Emphasized"
+                />
+            </toolbarContent>
+            <views>
+                <PlanningCalendarView key="Day" intervalType="Day" description="Dia"
+                    showSubIntervals="true" />
+                <PlanningCalendarView key="Week" intervalType="Week" description="Semana"
+                    intervalsS="1" intervalsM="5" intervalsL="7" />
+                <PlanningCalendarView key="OneMonth" intervalType="Month" description="Mês" />
+            </views>
+            <rows>
+                <PlanningCalendarRow
+                    enableAppointmentsDragAndDrop="true"
+                    enableAppointmentsCreate="true"
+                    enableAppointmentsResize="true"
+                    icon="sap-icon://employee"
+                    title="{funcionariosModel>nome}"
+                    text="{funcionariosModel>cargo}"
+                    appointments="{path : 'funcionariosModel>Tarefas', templateShareable: false}">
+                    <appointments>
+                        <unified:CalendarAppointment
+                            icon="sap-icon://task"
+                            startDate="{path: 'funcionariosModel>start', formatter: '.formatDate'}"
+                            endDate="{path: 'funcionariosModel>end', formatter: '.formatDate'}"
+                            title="{funcionariosModel>title}"
+                            text="{funcionariosModel>info}"
+                            type="{funcionariosModel>Tipo/type}"
+                        />
+                    </appointments>
+                </PlanningCalendarRow>
+            </rows>
+        </PlanningCalendar>
+    </VBox>
+</core:FragmentDefinition>

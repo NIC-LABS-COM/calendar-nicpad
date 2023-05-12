@@ -1,0 +1,59 @@
+{
+  "name": "teamcalendar",
+  "version": "1.0.0",
+  "description": "Calendario de equipe",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon src/server.js",
+    "lint": "eslint webapp",
+    "build": "ui5 build --all --clean-dest"
+  },
+  "dependencies": {
+    "@openui5/sap.f": "^1",
+    "@openui5/sap.m": "^1",
+    "@openui5/sap.ui.core": "^1",
+    "@openui5/sap.ui.documentation": "^1",
+    "@openui5/sap.ui.layout": "^1",
+    "@openui5/themelib_sap_fiori_3": "^1",
+    "dos2unix": "^1.1.2",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.3",
+    "fast-xml-parser": "^4.1.3",
+    "fs": "^0.0.1-security",
+    "js2xmlparser": "^5.0.0",
+    "mime-types": "^2.1.35",
+    "moment": "^2.29.4",
+    "mssql": "^9.0.1",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.8.0",
+    "sequelize": "^6.28.0",
+    "tedious": "^15.1.2",
+    "util": "^0.12.5",
+    "xml-js": "^1.6.11",
+    "xml2js": "^0.4.23"
+  },
+  "engines": {
+    "node": "18.12.1",
+    "npm": "8.19.3"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^2.14.4",
+    "eslint": "^4.19.1",
+    "json-server": "^0.17.1",
+    "nodemon": "^2.0.22"
+  },
+  "author": "nic-labs",
+  "keywords": [
+    "implantacao",
+    "backend",
+    "banco",
+    "de",
+    "dados",
+    "programacao",
+    "web",
+    "ii",
+    "pw"
+  ],
+  "license": "MIT"
+}

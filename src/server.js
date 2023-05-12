@@ -1,0 +1,27 @@
+const express = require('express')
+const api = express()
+const tarefas = require('./routes/tarefas')
+const funcionarios = require('./routes/funcionarios')
+const tipo = require('./routes/tipo')
+const bodyParser = require('body-parser')
+const js2xmlparser = require('js2xmlparser')
+const XmlFile = require('./models/XmlFile')
+const xml2js = require('xml2js')
+
+const Tarefa = require('./models/Tarefa')
+const Funcionario = require('./models/Funcionario')
+const Tipo = require('./models/Tipo')
+const database = require('./db')
+
+api.use(express.static('webapp'))
+api.use(express.json())
+api.use(bodyParser.urlencoded({ extended: true }))
+api.use(tarefas)
+api.use(funcionarios)
+api.use(tipo)
+api.use(XmlFile)
+
+api.listen(8080)
+;(async () => {
+  await database.sync() //VERIFICAR MODELOS DO PRODJETO PARA COM AS TABELA DO BANCO, GARANTINDO QUE OS DOIS ESTJAM IGUAIS(CASO NÃO EXISTA A TABELA, ELA SERÁ CRIADA)
+})()

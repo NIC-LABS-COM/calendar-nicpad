@@ -1,0 +1,141 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Dialog contentWidth="600px" draggable="true" id="editTask">
+		<beginButton>
+			<Button text="Salvar" type="Emphasized" press="onEdit" />
+		</beginButton>
+		<endButton>
+			<Button text="Cancelar" press="onCancelEdit" />
+		</endButton>
+		<l:VerticalLayout
+			class="sapUiContentPadding"
+			width="100%"
+		>
+
+			<!-- NOME TAREFA -->
+			<Label class="label" text="Nome da Tarefa:"
+				labelFor="eInputTitle" />
+			<Input id="eInputTitle" value="{tarefasModel>/title}" placeholder="Ex.: Reunião pontual"
+				showSuggestion="true" />
+
+			<!-- TIPO TAREFA -->
+			<Label text="Tipo da Tarefa:" labelFor="eTipoId" />
+			<Select
+				id="eTipoId"
+				forceSelection="false"
+				width="100%"
+				selectedKey="{tarefasModel>/tipoId}"
+				items="{
+					path: 'tipoModel>/Tipos',
+					sorter: {
+						path: 'tipoId'
+					}
+				}"
+			>
+				<core:Item key="{tipoModel>tipoId}" text="{tipoModel>text}" />
+			</Select>
+
+			<!-- INICIO -->
+			<Label text="Inicio: "
+				labelFor="eStartDate" />
+			<DateTimePicker
+				id="eStartDate"
+				value="{
+					path: 'tarefasModel>/start',
+					type: 'sap.ui.model.type.Date',
+					formatOptions: {
+						pattern: 'dd/MM/yyyy HH:mm:ss'
+					}
+				}"
+				displayFormat="long"
+				required="true"
+				change="eHandleCreateChange"
+			/>
+
+			<!-- FIM -->
+			<Label text="Fim: " labelFor="eEndDate" />
+			<DateTimePicker
+				id="eEndDate"
+				value="{
+					path: 'tarefasModel>/end',
+					type: 'sap.ui.model.type.Date',
+					formatOptions: {
+						pattern: 'dd/MM/yyyy HH:mm:ss'
+					}
+				}"
+				displayFormat="long"
+				required="true"
+				change="eHandleCreateChange"
+			/>
+
+			<!-- DESCRIÇÃO -->
+			<Label text="Descrição - (Obrigatório): " labelFor="eMoreInfo"
+			/>
+			<TextArea id="eMoreInfo" value="{tarefasModel>/info}" rows="6"
+				width="100%" />
+
+			<!-- DONO (FUNCIONARIO)-->
+			<Label
+				text="Dono da tarefa:" labelFor="eFuncionarioId" />
+			<Select
+				id="eFuncionarioId"
+				forceSelection="false"
+				width="100%"
+				selectedKey="{tarefasModel>/funcionarioId}"
+				items="{
+					path: 'funcionariosModel>/Funcionarios',
+					sorter: {
+						path: 'funcionarioId'
+					}
+				}"
+			>
+				<core:Item key="{funcionariosModel>funcionarioId}" text="{funcionariosModel>nome}" />
+			</Select>
+
+			<!-- APROVADOR -->
+			<Label text="Aprovador da tarefa:"
+				labelFor="eAprovadorId" />
+			<Select
+				id="eAprovadorId"
+				forceSelection="false"
+				width="100%"
+				selectedKey="{tarefasModel>/aprovadorId}"
+				items="{
+					path: 'funcionariosModel>/Funcionarios',
+					sorter: {
+						path: 'funcionarioId'
+					}
+				}"
+			>
+				<core:Item key="{funcionariosModel>funcionarioId}" text="{funcionariosModel>nome}" />
+			</Select>
+
+			<!-- NÍVEL -->
+			<Label text="Prioridade:"
+				labelFor="eInputPriority" />
+			<Input id="eInputPriority" value="{tarefasModel>/nivel}" placeholder="Urgente"
+				showSuggestion="true" />
+
+			<!-- PARTICIPANTE -->
+			<Label text="Participante da tarefa:" labelFor="eParticipanteId" />
+			<Select
+				id="eParticipanteId"
+				forceSelection="false"
+				width="100%"
+				selectedKey="{tarefasModel>/participanteId}"
+				items="{
+					path: 'funcionariosModel>/Funcionarios',
+					sorter: {
+						path: 'funcionarioId'
+					}
+				}"
+			>
+				<core:Item key="{funcionariosModel>funcionarioId}" text="{funcionariosModel>nome}" />
+			</Select>
+
+
+		</l:VerticalLayout>
+	</Dialog>
+</core:FragmentDefinition>

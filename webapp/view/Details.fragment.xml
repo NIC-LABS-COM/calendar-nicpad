@@ -1,0 +1,35 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+>
+	<ResponsivePopover
+		id="detailsPopover"
+		title="{funcionariosModel>title}"
+		class="sapUiContentPadding"
+		placement="Auto">
+
+		<beginButton>
+			<Button text="Editar" type="Emphasized" press=".taskEdit" />
+		</beginButton>
+		<endButton>
+			<Button type="Reject" text="Deletar" press=".taskDelete" />
+		</endButton>
+		<f:SimpleForm
+			editable="false"
+			layout="ResponsiveGridLayout"
+			singleContainerFullSize="false">
+			<Label text="Informações Adicionais" labelFor="moreInfoText" />
+			<Text
+				id="moreInfoText" text=" {funcionariosModel>info}" />
+			<Label text="De" labelFor=" startDateText" />
+			<Text
+				id="startDateText"
+				text="{path: 'funcionariosModel>start' , formatter: '.myformatter.utcToLocalDateTime' }" />
+			<Label text="Para" labelFor="endDateText" />
+			<Text
+				id="endDateText"
+				text="{path: 'funcionariosModel>end' , formatter: '.myformatter.utcToLocalDateTime' }" />
+		</f:SimpleForm>
+	</ResponsivePopover>
+</core:FragmentDefinition>

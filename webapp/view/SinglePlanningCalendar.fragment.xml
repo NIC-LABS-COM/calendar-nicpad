@@ -1,0 +1,41 @@
+<!-- controllerName="teamCalendar.controller.Main" -->
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:unified="sap.ui.unified"
+    xmlns:core="sap.ui.core">
+    <VBox>
+        <SinglePlanningCalendar id="SinglePlanningCalendar"
+            startDateChange=".startDateChangeHandler" viewChange=".viewChangeHandler"
+            appointments="{path : 'funcionariosModel>Tarefas'}">
+            <actions>
+                <Select id="SinglePlanningCalendarTeamSelector" change=".selectChangeHandler">
+                    <core:Item key="Funcionarios" text="Funcionarios" />
+                </Select>
+                <Button id="employeeDelete" icon="sap-icon://delete"
+                    press="employeeDelete" tooltip="Deletar Funcionario" type="Reject"
+                />
+                <Button id="SinglePlanningCalendarCreateAppointmentButton"
+                    icon="sap-icon://add-activity"
+                    press="taskCreate" tooltip="Criar novo compromisso" type="Emphasized" />
+                <Button id="SinglePlanningCalendarLegendButton" icon="sap-icon://legend"
+                    press="openLegend" tooltip="Open Single Planning Calendar legend"
+                    type="Emphasized" />
+            </actions>
+            <views>
+                <SinglePlanningCalendarDayView key="Day" title="Dia" />
+                <SinglePlanningCalendarWeekView key="Week" title="Semana" />
+                <SinglePlanningCalendarMonthView key="OneMonth" title="Mês" />
+            </views>
+            <appointments>
+                <unified:CalendarAppointment
+                    title="{funcionariosModel>title}"
+                    text="{funcionariosModel>text}"
+                    icon="sap-icon://task"
+                    startDate="{ path: 'funcionariosModel>start', formatter: '.formatDate' }"
+                    endDate="{ path: 'funcionariosModel>end', formatter: '.formatDate' }"
+                    type="{funcionariosModel>Tipo/type}"
+                />
+            </appointments>
+        </SinglePlanningCalendar>
+    </VBox>
+</core:FragmentDefinition>

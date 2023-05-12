@@ -1,0 +1,31 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Dialog contentWidth="400px" draggable="true" id="createEmployee">
+		<beginButton>
+			<Button text="Adicionar" type="Emphasized" press="onSaveFuncionario" />
+		</beginButton>
+		<endButton>
+			<Button text="Cancelar" press="onCancelEmployee" />
+		</endButton>
+		<l:VerticalLayout
+			class="sapUiContentPadding"
+			width="100%"
+		>
+
+			<!-- NOME -->
+			<Label class="label" text="Nome:"
+				labelFor="inputNome" />
+			<Input id="inputNome" value="{funcionariosModel>/nome}"
+				showSuggestion="true" />
+
+			<!-- CARGO -->
+			<Label text="Cargo:" labelFor="inputType" />
+			<Input
+				id="inputCargo" value="{funcionariosModel>/cargo}" placeholder="Desenvolvedor"
+				showSuggestion="true" />
+
+		</l:VerticalLayout>
+	</Dialog>
+</core:FragmentDefinition>

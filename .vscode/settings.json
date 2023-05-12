@@ -1,0 +1,9 @@
+{
+  "liveServer.settings.port": 5502,
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/eddea917-1a19-414c-8c9f-e6088ac62be4/AppServices/subscriptions/eddea917-1a19-414c-8c9f-e6088ac62be4/resourceGroups/niclabs/providers/Microsoft.Web/sites/calendar-niclabs",
+  "appService.deploySubpath": "."
+}

@@ -1,0 +1,168 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Dialog contentWidth="600px" draggable="true" id="createTask">
+		<beginButton>
+			<Button text="Salvar" type="Emphasized" press="onSave" />
+		</beginButton>
+		<endButton>
+			<Button text="Cancelar" press="onCancelTask" />
+		</endButton>
+		<l:VerticalLayout
+			class="sapUiContentPadding"
+			width="100%"
+		>
+
+			<!-- NOME TAREFA -->
+			<Label class="label" text="Nome da Tarefa:"
+				labelFor="inputTitle" />
+			<Input id="inputTitle" value="{tarefasModel>/title}"
+				placeholder="Ex.: Reunião pontual"
+				showSuggestion="true" />
+
+
+			<!-- TIPO TAREFA -->
+			<Label text="Tipo da Tarefa:" labelFor="tipoId" />
+			<Select
+				id="tipoId"
+				forceSelection="false"
+				width="100%"
+				selectedKey="{tarefasModel>/tipoId}"
+				items="{
+					path: 'tipoModel>/Tipos',
+					sorter: {
+						path: 'tipoId'
+					}
+				}"
+			>
+				<!-- <core:ListItem key="{tipoModel>tipoId}" text="{tipoModel>text}"
+					icon="../images/nic-pad-logo.png" /> -->
+				<core:Item key="{tipoModel>tipoId}" text="{tipoModel>text}"
+				/>
+			</Select>
+
+			<!-- INICIO -->
+			<Label
+				text="Inicio: "
+				labelFor="startDate" />
+			<DateTimePicker
+				id="startDate"
+				value="{
+					path: 'tarefasModel>/start',
+					type: 'sap.ui.model.type.Date',
+					formatOptions: {
+						pattern: 'dd/MM/yyyy HH:mm:ss'
+					}
+				}"
+				displayFormat="long"
+				required="true"
+				change="handleCreateChange"
+			/>
+
+			<!-- FIM -->
+			<Label text="Fim: " labelFor="endDate" />
+			<DateTimePicker
+				id="endDate"
+				value="{
+					path: 'tarefasModel>/end',
+					type: 'sap.ui.model.type.Date',
+					formatOptions: {
+						pattern: 'dd/MM/yyyy HH:mm:ss'
+					}
+				}"
+				displayFormat="long"
+				required="true"
+				change="handleCreateChange"
+			/>
+
+			<!-- DESCRIÇÃO -->
+			<Label text="Descrição - (Obrigatório): " labelFor="inputInfo"
+			/>
+			<TextArea
+				id="moreInfo" value="{tarefasModel>/info}" rows="6"
+				width="100%" />
+
+			<!-- DONO (FUNCIONARIO)-->
+			<Label
+				text="Dono da tarefa:" labelFor="funcionarioId" />
+			<!-- <MultiComboBox
+				id="funcionarioId"
+				selectionChange="handleSelectionChange"
+				selectionFinish="handleSelectionFinish"
+				width="100%"
+				selectedKey="{tarefasModel>/funcionarioId}"
+				items="{
+					path: 'funcionariosModel>/Funcionarios',
+					sorter: {
+						path: 'funcionarioId'
+					}
+				}">
+				<core:Item key="{funcionariosModel>funcionarioId}" text="{funcionariosModel>nome}" />
+			</MultiComboBox> -->
+
+			<Select
+				id="funcionarioId"
+				forceSelection="false"
+				width="100%"
+				selectedKey="{tarefasModel>/funcionarioId}"
+				items="{
+					path: 'funcionariosModel>/Funcionarios',
+					sorter: {
+						path: 'funcionarioId'
+					}
+				}"
+			>
+				<core:Item key="" text="Funcionários" />
+				<core:Item
+					key="{funcionariosModel>funcionarioId}" text="{funcionariosModel>nome}" />
+			</Select>
+
+			<!--
+			APROVADOR -->
+			<Label text="Aprovador da tarefa:"
+				labelFor="aprovadorId" />
+			<Select
+				id="aprovadorId"
+				forceSelection="false"
+				width="100%"
+				selectedKey="{tarefasModel>/aprovadorId}"
+				items="{
+					path: 'funcionariosModel>/Funcionarios',
+					sorter: {
+						path: 'funcionarioId'
+					}
+				}"
+			>
+				<core:Item key="{funcionariosModel>funcionarioId}" text="{funcionariosModel>nome}" />
+			</Select>
+
+			<!-- NÍVEL -->
+			<Label
+				text="Prioridade:"
+				labelFor="inputPriority" />
+			<Input id="inputPriority" value="{tarefasModel>/nivel}"
+				placeholder="Urgente"
+				showSuggestion="true" />
+
+			<!-- PARTICIPANTE -->
+			<Label text="Participante da tarefa:" labelFor="participanteId" />
+			<Select
+				id="participanteId"
+				forceSelection="false"
+				width="100%"
+				selectedKey="{tarefasModel>/participanteId}"
+				items="{
+					path: 'funcionariosModel>/Funcionarios',
+					sorter: {
+						path: 'funcionarioId'
+					}
+				}"
+			>
+				<core:Item key="{funcionariosModel>funcionarioId}" text="{funcionariosModel>nome}" />
+			</Select>
+
+
+		</l:VerticalLayout>
+	</Dialog>
+</core:FragmentDefinition>
