@@ -140,10 +140,24 @@
 			<!-- NÍVEL -->
 			<Label
 				text="Prioridade:"
-				labelFor="inputPriority" />
-			<Input id="inputPriority" value="{tarefasModel>/nivel}"
-				placeholder="Urgente"
-				showSuggestion="true" />
+				labelFor="prioridadeId" />
+			<Select
+				id="prioridadeId"
+				forceSelection="false"
+				width="100%"
+				selectedKey="{tarefasModel>/prioridadeId}"
+				items="{
+					path: 'prioridadeModel>/Prioridades',
+					sorter: {
+						path: 'prioridadeId'
+					}
+				}"
+			>
+				<!-- <core:ListItem key="{tipoModel>tipoId}" text="{tipoModel>text}"
+					icon="../images/nic-pad-logo.png" /> -->
+				<core:Item key="{prioridadeModel>prioridadeId}" text="{prioridadeModel>text}"
+				/>
+			</Select>
 
 			<!-- PARTICIPANTE -->
 			<Label text="Participante da tarefa:" labelFor="participanteId" />

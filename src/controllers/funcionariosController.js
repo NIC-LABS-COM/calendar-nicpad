@@ -1,12 +1,13 @@
 const Funcionario = require('../models/Funcionario')
 const Tarefa = require('../models/Tarefa')
 const Tipo = require('../models/Tipo')
+const Cargo = require('../models/Cargo')
 
 module.exports = {
   async listFuncionarios(req, res) {
     try {
       const funcionarios = await Funcionario.findAll({
-        include: [{ model: Tarefa, include: Tipo }]
+        include: [{ model: Tarefa, include: Tipo }, { model: Cargo }]
       })
       return res.json(funcionarios)
     } catch (error) {
@@ -19,7 +20,7 @@ module.exports = {
     if (!req.body.nome) {
       return res.status(422).json({ error: 'Nome é obrigatório' })
     }
-    if (!req.body.cargo) {
+    if (!req.body.cargoId) {
       return res.status(422).json({ error: 'Cargo é obrigatório' })
     }
     try {
@@ -31,7 +32,7 @@ module.exports = {
       }
       const funcionarios = await Funcionario.create({
         nome: req.body.nome,
-        cargo: req.body.cargo
+        cargoId: req.body.cargoId
       })
       await funcionarios.save()
       return res.status(201).json(funcionarios)

@@ -58,6 +58,8 @@ sap.ui.define(
         this._getFuncionariosList()
         this._getTarefasList()
         this._getTipoList()
+        this._getCargoList()
+        this._getPrioridadeList()
         // var oModel = this.getView().getModel('funcionariosModel')
         // console.log(oModel.getData())
       },
@@ -853,6 +855,68 @@ sap.ui.define(
           })
       },
 
+      _getCargoList: function () {
+        var url = '/listCargo'
+        var that = this
+        $.ajax({
+          type: 'GET',
+          url: url,
+          async: false,
+          success: function (data, status) {
+            var oCargoModel = new sap.ui.model.json.JSONModel()
+            oCargoModel.setData({
+              Cargos: data
+            })
+            that.getView().setModel(oCargoModel, 'cargoModel')
+          },
+          error: function (error) {
+            if (error.responseJSON.msg) {
+              MessageToast.show(error.responseJSON.msg, { duration: 6000 })
+            }
+            if (error.status === 401) {
+              that.getRouter().navTo('main')
+            }
+          }
+        })
+          .done(function () {
+            console.log('Dados Cargo recuperados com sucesso.')
+          })
+          .fail(function () {
+            console.log('Erro ao recuperar dados.')
+          })
+      },
+
+      _getPrioridadeList: function () {
+        var url = '/listPrioridade'
+        var that = this
+        $.ajax({
+          type: 'GET',
+          url: url,
+          async: false,
+          success: function (data, status) {
+            var oPrioridadeModel = new sap.ui.model.json.JSONModel()
+            oPrioridadeModel.setData({
+              Prioridades: data
+            })
+            that.getView().setModel(oPrioridadeModel, 'prioridadeModel')
+          },
+          error: function (error) {
+            if (error.responseJSON.msg) {
+              MessageToast.show(error.responseJSON.msg, { duration: 6000 })
+            }
+            if (error.status === 401) {
+              that.getRouter().navTo('main')
+            }
+          }
+        })
+          .done(function () {
+            console.log('Dados Prioridade recuperados com sucesso.')
+          })
+          .fail(function () {
+            console.log('Erro ao recuperar dados.')
+          })
+      },
+
       _getTarefasList: function () {
         var url = '/listTarefas'
         var that = this
@@ -978,7 +1042,8 @@ sap.ui.define(
               text:
                 oFuncionariosModel.getProperty('/Funcionarios')[iPerson].nome +
                 ' - ' +
-                oFuncionariosModel.getProperty('/Funcionarios')[iPerson].cargo
+                oFuncionariosModel.getProperty('/Funcionarios')[iPerson].Cargo
+                  .text
             })
           )
         }

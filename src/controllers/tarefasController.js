@@ -34,7 +34,7 @@ module.exports = {
         end: new Date(req.body.end),
         info: req.body.info,
         aprovadorId: req.body.aprovadorId,
-        nivel: req.body.nivel,
+        prioridadeId: req.body.prioridadeId,
         participanteId: req.body.participanteId
       })
       await tarefas.save()
@@ -59,7 +59,7 @@ module.exports = {
         end: new Date(req.body.end),
         info: req.body.info,
         aprovadorId: req.body.aprovadorId,
-        nivel: req.body.nivel,
+        prioridadeId: req.body.prioridadeId,
         participanteId: req.body.participanteId,
         updatedAt: new Date()
       })

@@ -21,10 +21,26 @@
 				showSuggestion="true" />
 
 			<!-- CARGO -->
-			<Label text="Cargo:" labelFor="inputType" />
-			<Input
+
+			<Label text="Cargo:" labelFor="cargoId" />
+			<Select
+				id="cargoId"
+				forceSelection="false"
+				width="100%"
+				selectedKey="{funcionariosModel>/cargoId}"
+				items="{
+					path: 'cargoModel>/Cargos',
+					sorter: {
+						path: 'cargoId'
+					}
+				}"
+			>
+				<core:Item key="{cargoModel>cargoId}" text="{cargoModel>text}"
+				/>
+			</Select>
+			<!-- <Input
 				id="inputCargo" value="{funcionariosModel>/cargo}" placeholder="Desenvolvedor"
-				showSuggestion="true" />
+				showSuggestion="true" /> -->
 
 		</l:VerticalLayout>
 	</Dialog>

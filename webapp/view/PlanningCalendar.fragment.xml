@@ -49,7 +49,7 @@
                     enableAppointmentsResize="true"
                     icon="sap-icon://employee"
                     title="{funcionariosModel>nome}"
-                    text="{funcionariosModel>cargo}"
+                    text="{funcionariosModel>Cargo/text}"
                     appointments="{path : 'funcionariosModel>Tarefas', templateShareable: false}">
                     <appointments>
                         <unified:CalendarAppointment

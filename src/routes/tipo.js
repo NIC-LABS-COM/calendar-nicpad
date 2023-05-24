@@ -1,9 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const tipoController = require('../controllers/tipoController')
-const Funcionario = require('../models/Funcionario')
-const Tarefa = require('../models/Tarefa')
-const Tipo = require('../models/Tipo')
 
 router.get('/listTipo', async (req, res, next) => {
   tipoController.listTipo(req, res)

@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes, Model } = require('sequelize')
 const database = require('../db')
 const Tarefa = require('./Tarefa')
+const Cargo = require('./Cargo')
 
 class Funcionario extends Sequelize.Model {}
 
@@ -17,7 +18,7 @@ Funcionario.init(
       allowNull: false,
       unique: true // garante que o nome do funcionário seja único na tabela
     },
-    cargo: DataTypes.STRING
+    cargoId: DataTypes.INTEGER
   },
 
   {
@@ -26,5 +27,13 @@ Funcionario.init(
     timestamps: true
   }
 )
+
+Funcionario.belongsTo(Cargo, {
+  foreignKey: 'cargoId'
+})
+
+Cargo.hasMany(Funcionario, {
+  foreignKey: 'cargoId'
+})
 
 module.exports = Funcionario

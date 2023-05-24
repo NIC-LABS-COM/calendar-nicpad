@@ -2,6 +2,7 @@ const { Sequelize, DataTypes, Model } = require('sequelize')
 const database = require('../db')
 const Funcionario = require('./Funcionario')
 const Tipo = require('./Tipo')
+const Prioridade = require('./Prioridade')
 
 class Tarefa extends Sequelize.Model {}
 
@@ -20,7 +21,7 @@ Tarefa.init(
     end: DataTypes.DATE(7),
     info: DataTypes.STRING,
     aprovadorId: DataTypes.INTEGER,
-    nivel: DataTypes.STRING,
+    prioridadeId: DataTypes.INTEGER,
     participanteId: DataTypes.INTEGER
   },
 
@@ -42,5 +43,13 @@ Tarefa.belongsTo(Tipo, {
 
 Tipo.hasMany(Tarefa, {
   foreignKey: 'tipoId'
+})
+
+Tarefa.belongsTo(Prioridade, {
+  foreignKey: 'prioridadeId'
+})
+
+Prioridade.hasMany(Tarefa, {
+  foreignKey: 'prioridadeId'
 })
 module.exports = Tarefa
